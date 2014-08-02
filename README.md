@@ -1,4 +1,4 @@
-# bar-cookbook
+# hanlon-cookbook
 
-TODO: Enter the cookbook description here.
+This is the wrapper cookbook to deploy [hanlon](https://github.com/csc/Hanlon). This is very much a WIP.
 
