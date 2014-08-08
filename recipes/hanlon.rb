@@ -7,8 +7,6 @@ when "debian", "ubuntu"
   package "git-core" do
     action :install
   end
-
-  
 when "redhat", "centos", "fedora"
   package "git" do
     action :install
@@ -46,7 +44,6 @@ remote_file "/tmp/hnl_mk_prod-image.1.0.iso" do
   
 end
 
-
 directory "/opt/hanlon" do
   owner "root"
   group "root"
@@ -61,3 +58,14 @@ git "/opt/hanlon/" do
   action :sync
 end
 
+script "bundle install hanlon" do
+  interpreter "bash"
+  user "root"
+  cwd "/opt/hanlon"
+  creates "maybe"
+  code <<-EOH
+    STATUS=0
+    bundle install || STATUS=1
+    exit $STATUS
+    EOH
+end

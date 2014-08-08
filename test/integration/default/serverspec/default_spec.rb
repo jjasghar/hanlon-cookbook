@@ -1,6 +1,10 @@
 require 'serverspec'
 include Serverspec::Helper::Exec
 
+describe file('/usr/local/bin/ruby') do
+  it { should be_file }
+end
+
 describe command('netstat -ua | grep tftp') do
   it { should return_exit_status 0 }
 end
@@ -51,6 +55,10 @@ end
 
 describe file('/opt/hanlon/.git') do
   it { should be_directory }
+end
+
+describe file('/usr/local/bin/bundler') do
+  it { should be_file }
 end
 
 
