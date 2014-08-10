@@ -8,5 +8,6 @@ version '0.1.0'
 
 depends 'apt'
 depends 'build-essential'
+depends 'ruby_build'
 depends 'tftp'
 depends 'yum'

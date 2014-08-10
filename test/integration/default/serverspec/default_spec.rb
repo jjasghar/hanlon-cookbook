@@ -57,9 +57,5 @@ describe file('/opt/hanlon/.git') do
   it { should be_directory }
 end
 
-describe file('/usr/local/bin/bundler') do
-  it { should be_file }
-end
-
 
 

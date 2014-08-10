@@ -11,31 +11,18 @@ case node["platform"]
 when "debian", "ubuntu"
   include_recipe 'apt'
   include_recipe 'build-essential::default'
+  include_recipe 'ruby_build'
 
-  script "install ruby" do
-    interpreter "bash"
-    user "root"
-    cwd "/tmp"
-    creates "/usr/local/bin/ruby"
-    code <<-EOH
-      STATUS=0
-      wget http://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p547.tar.gz || STATUS=1
-      tar -xvzf ruby-1.9.3-p547.tar.gz  || STATUS=1
-      cd ruby-1.9.3-p547/  || STATUS=1
-      ./configure --prefix=/usr/local  || STATUS=1
-      make  || STATUS=1
-      make install  || STATUS=1
-      cd /tmp  || STATUS=1
-      rm -rf ruby-1.9.3-p547* || STATUS=1
-      exit $STATUS
-    EOH
+  ruby_build_ruby '1.9.3-p547' do
+    prefix_path '/usr/local'
+    action :install
   end
 
 when "redhat", "centos", "fedora"
   include_recipe 'yum'
   include_recipe 'build-essential::default'
 
-  %w{libtool openssl zlib-devel}.each do |pkg|
+  %w{libtool openssl zlib-devel java-1.7.0-openjdk java-1.7.0-openjdk-devel}.each do |pkg|
      package pkg do
        action :install
      end
@@ -58,23 +45,11 @@ when "redhat", "centos", "fedora"
     EOH
   end
 
-  script "install ruby" do
-    interpreter "bash"
-    user "root"
-    cwd "/tmp"
-    creates "/usr/local/bin/ruby"
-    code <<-EOH
-      STATUS=0
-      wget http://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p547.tar.gz || STATUS=1
-      tar -xvzf ruby-1.9.3-p547.tar.gz  || STATUS=1
-      cd ruby-1.9.3-p547/  || STATUS=1
-      ./configure --prefix=/usr/local  || STATUS=1
-      make  || STATUS=1
-      make install  || STATUS=1
-      cd /tmp  || STATUS=1
-      rm -rf ruby-1.9.3-p547* || STATUS=1
-      exit $STATUS
-    EOH
+  include_recipe 'ruby_build'
+
+  ruby_build_ruby '1.9.3-p547' do
+    prefix_path '/usr/local'
+    action :install
   end
 end
 

@@ -1,7 +1,6 @@
 #
 # main hanlon build
 #
-
 case node["platform"]
 when "debian", "ubuntu"
   package "git-core" do
@@ -56,16 +55,4 @@ git "/opt/hanlon/" do
   repository "https://github.com/csc/Hanlon.git"
   reference "master"
   action :sync
-end
-
-script "bundle install hanlon" do
-  interpreter "bash"
-  user "root"
-  cwd "/opt/hanlon"
-  creates "maybe"
-  code <<-EOH
-    STATUS=0
-    bundle install || STATUS=1
-    exit $STATUS
-    EOH
 end
