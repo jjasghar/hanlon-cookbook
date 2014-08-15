@@ -1,17 +1,6 @@
 #
 # main hanlon build
 #
-case node["platform"]
-when "debian", "ubuntu"
-  package "git-core" do
-    action :install
-  end
-when "redhat", "centos", "fedora"
-  package "git" do
-    action :install
-  end
-end
-
 
 remote_file "/tmp/hnl_mk_debug-image.1.0.iso" do
   source "https://github.com/csc/Hanlon-Microkernel/releases/download/v1.0/hnl_mk_debug-image.1.0.iso"
@@ -56,3 +45,23 @@ git "/opt/hanlon/" do
   reference "master"
   action :sync
 end
+
+gem_package 'bundler' do
+  gem_binary '/usr/local/bin/gem'
+  options '--no-ri --no-rdoc'
+end
+
+execute 'bundle install' do
+  cwd '/opt/hanlon'
+  command '/usr/local/bin/bundle install'
+end
+
+execute 'hanlon_init' do
+  cwd '/opt/hanlon'
+  command '/usr/local/bin/ruby hanlon_init'
+  not_if {File.exists?("/opt/hanlon/web/config/hanlon_server.conf")}
+end
+
+include_recipe 'runit'
+
+runit_service "hanlon-puma"

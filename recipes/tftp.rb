@@ -1,7 +1,8 @@
 #
-# centos config
+# tftp config
 #
 
+include_recipe 'tftp'
 
 remote_file "#{Chef::Config[:file_cache_path]}/syslinux-6.02.tar.gz" do
   source 'https://www.kernel.org/pub/linux/utils/boot/syslinux/syslinux-6.02.tar.gz'
@@ -50,7 +51,6 @@ script "pull out portions of ipxe" do
     EOH
 end
 
-
 directory "/var/lib/tftpboot/pxelinux.cfg" do
   owner "root"
   group "root"
@@ -58,7 +58,6 @@ directory "/var/lib/tftpboot/pxelinux.cfg" do
   
   action :create
 end
-
 
 template "/var/lib/tftpboot/pxelinux.cfg/default" do
   source "default.erb"
