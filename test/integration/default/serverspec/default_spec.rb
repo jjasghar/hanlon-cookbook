@@ -5,10 +5,6 @@ describe file('/usr/local/bin/ruby') do
   it { should be_file }
 end
 
-describe command('netstat -ua | grep tftp') do
-  it { should return_exit_status 0 }
-end
-
 describe file('/var/lib/tftpboot/pxelinux.0') do
   it { should be_file }
 end
@@ -55,6 +51,18 @@ end
 
 describe file('/opt/hanlon/.git') do
   it { should be_directory }
+end
+
+describe service('hanlon-puma') do
+  it { should be_running }
+end
+
+describe port(69) do
+  it { should be_listening }
+end
+
+describe port(9292) do
+  it { should be_listening }
 end
 
 
