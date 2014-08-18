@@ -1,0 +1,38 @@
+#
+# This file is the main configuration for ProjectHanlon
+#
+# -- this was Chef generated --
+#
+#
+--- !ruby/object:ProjectHanlon::Config::Server
+noun: config
+admin_port: 8025
+api_port: 8026
+api_version: v1
+base_path: /hanlon/api
+daemon_min_cycle_time: 30
+force_mk_uuid: ''
+hanlon_log_level: Logger::ERROR
+hanlon_server: 10.0.2.15
+image_path: /opt/hanlon/image
+mk_checkin_interval: 60
+mk_checkin_skew: 5
+mk_fact_excl_pattern: (^facter.*$)|(^id$)|(^kernel.*$)|(^memoryfree$)|(^memoryfree_mb$)|(^operating.*$)|(^osfamily$)|(^path$)|(^ps$)|(^ruby.*$)|(^selinux$)|(^ssh.*$)|(^swap.*$)|(^timezone$)|(^uniqueid$)|(^uptime.*$)|(.*json_str$)
+mk_gem_mirror: http://localhost:2158/gem-mirror
+mk_gemlist_uri: /gems/gem.list
+mk_kmod_install_list_uri: /kmod-install-list
+mk_log_level: Logger::ERROR
+mk_tce_install_list_uri: /tce-install-list
+mk_tce_mirror: http://localhost:2157/tinycorelinux
+node_expire_timeout: 300
+persist_host: <%= node['hanlon']['persist_host'] %>
+persist_mode: <%= node['hanlon']['persist_mode'] %>
+persist_password: '<%= node['hanlon']['persist_password'] %>'
+persist_port: <%= node['hanlon']['persist_port'] %>
+persist_timeout: <%= node['hanlon']['persist_timeout'] %>
+persist_username: '<%= node['hanlon']['persist_username'] %>'
+register_timeout: 120
+rz_mk_boot_debug_level: Logger::ERROR
+rz_mk_boot_kernel_args: ''
+sui_allow_access: 'true'
+sui_mount_path: /docs

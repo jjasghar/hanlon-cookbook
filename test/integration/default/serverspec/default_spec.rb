@@ -53,17 +53,22 @@ describe file('/opt/hanlon/.git') do
   it { should be_directory }
 end
 
-describe service('hanlon-puma') do
+describe service('hanlon') do
   it { should be_running }
 end
 
-describe port(69) do
+describe port(8026) do
   it { should be_listening }
 end
 
-describe port(9292) do
-  it { should be_listening }
+describe service('dnsmasq') do
+  it { should be_running }
 end
 
+describe service('mongod') do
+  it { should be_running }
+end
 
-
+describe port(27017) do
+  it { should be_listening }
+end
