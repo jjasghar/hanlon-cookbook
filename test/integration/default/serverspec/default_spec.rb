@@ -72,3 +72,7 @@ end
 describe port(27017) do
   it { should be_listening }
 end
+
+describe command('curl http://localhost:8026/hanlon/api/v1/config') do
+  it { should return_stdout /\"result\"\:\"Ok\"/ }
+end
