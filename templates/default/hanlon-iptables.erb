@@ -1,0 +1,2 @@
+iptables --table nat --append POSTROUTING --out-interface <%= node['hanlon']['no_dhcp_interface'] %> -j MASQUERADE
+iptables --append FORWARD --in-interface <%= node['hanlon']['dhcp_interface'] %> -j ACCEPT
