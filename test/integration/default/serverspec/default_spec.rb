@@ -34,11 +34,11 @@ describe file('/var/lib/tftpboot/pxelinux.cfg/default') do
 end
 
 describe file('/tmp/hnl_mk_debug-image.1.0.iso') do
-  it { should be_file }
+  it { should_not be_file }
 end
 
 describe file('/tmp/hnl_mk_dev-image.1.0.iso') do
-  it { should be_file }
+  it { should_not be_file }
 end
 
 describe file('/tmp/hnl_mk_prod-image.1.0.iso') do
@@ -49,7 +49,7 @@ describe file('/opt/hanlon') do
   it { should be_directory }
 end
 
-describe file('/opt/hanlon/.git') do
+describe file('/opt/hanlon/embedded/hanlon/web/config/') do
   it { should be_directory }
 end
 
