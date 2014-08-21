@@ -7,7 +7,6 @@
 #
 #
 
-include_recipe 'hanlon::ruby'
 include_recipe 'hanlon::dnsmasq'
 include_recipe 'hanlon::database'
 include_recipe 'hanlon::networking'

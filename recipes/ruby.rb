@@ -15,10 +15,10 @@ when 'redhat', 'centos', 'fedora'
   include_recipe 'yum'
   include_recipe 'yum-epel'
 
-  %w{ libtool openssl zlib-devel libyaml-devel }.each do |pkg|
-     package pkg do
-       action :install
-     end
+  %w( libtool openssl zlib-devel libyaml-devel ).each do |pkg|
+    package pkg do
+      action :install
+    end
   end
 end
 

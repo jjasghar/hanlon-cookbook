@@ -13,8 +13,8 @@ base_path: /hanlon/api
 daemon_min_cycle_time: 30
 force_mk_uuid: ''
 hanlon_log_level: Logger::ERROR
-hanlon_server: 10.0.2.15
-image_path: /opt/hanlon/image
+hanlon_server: <%= node[:ipaddress] %>
+image_path: /opt/hanlon/embedded/hanlon/image
 mk_checkin_interval: 60
 mk_checkin_skew: 5
 mk_fact_excl_pattern: (^facter.*$)|(^id$)|(^kernel.*$)|(^memoryfree$)|(^memoryfree_mb$)|(^operating.*$)|(^osfamily$)|(^path$)|(^ps$)|(^ruby.*$)|(^selinux$)|(^ssh.*$)|(^swap.*$)|(^timezone$)|(^uniqueid$)|(^uptime.*$)|(.*json_str$)
